@@ -23,7 +23,6 @@ public class Individual {
 
     public boolean add(Account account) {
 
-
         return true;
     }
 }
