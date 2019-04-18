@@ -1,8 +1,8 @@
 package po73.kosenko.oop.model;
 
 public class Account {
-    private String number;
-    private double balance;
+    private String number; // номер счета
+    private double balance; //баланс
 
     public Account() {
         this("",0);
