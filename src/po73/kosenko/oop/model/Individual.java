@@ -97,7 +97,27 @@ public class Individual {
         System.arraycopy(accounts,0,notNullAccounts,0,accountsCount);
         return notNullAccounts;
     }
-    //todo СДЕЛАТЬ СОРТИРОВКУ
+
+    public Account[] sortedAccounts(){
+        Account[] sortedAccounts = new Account[accountsCount];
+        System.arraycopy(accounts,0,sortedAccounts,0,accountsCount);
+        for (int i = 0; i < accountsCount; i++) {
+            Account min = sortedAccounts [i];
+            int minIndex = i;
+            for (int j = i + 1; j < accounts.length; j++) {
+                if (sortedAccounts[j].getBalance() < min.getBalance()) {
+                    min = sortedAccounts[j];
+                    minIndex = j;
+                }
+            }
+            if (i != minIndex) {
+                Account tmp = sortedAccounts[i];
+                sortedAccounts[i] = sortedAccounts[minIndex];
+                sortedAccounts[minIndex] = tmp;
+            }
+         }
+        return sortedAccounts;
+    }
 
     public double totalBalance() {
         double totalBalance = 0;
