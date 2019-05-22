@@ -58,5 +58,51 @@ public class AccountManager {
     }
     public Individual arrayIndividual() { return individuals[individualCount]; }
 
+    public Individual[] sortedIndividual(){
+        Individual[] sortedIndividual = new Individual[individualCount];
+        System.arraycopy(individuals,0,sortedIndividual,0,individualCount);
+        for (int i = 0; i < individualCount; i++) {
+            Individual min = sortedIndividual [i];
+            int minIndex = i;
+            for (int j = i + 1; j < individuals.length; j++) {
+                if (sortedIndividual[j].totalBalance() < min.totalBalance()) {
+                    min = sortedIndividual[j];
+                    minIndex = j;
+                }
+            }
+            if (i != minIndex) {
+                Individual tmp = sortedIndividual[i];
+                sortedIndividual[i] = sortedIndividual[minIndex];
+                sortedIndividual[minIndex] = tmp;
+            }
+        }
+        return sortedIndividual();
+    }
+
+    public Account get(String number) {
+        for (Account account : accounts) {
+            if (account.getNumber().equals(number)){
+                return account;
+            }
+        }
+        return null;
+    }
+
+    public Account delete(double balance) {
+        for (int i = 0; i < accountsCount; i++) {
+            if (balance == accounts[i].getBalance()) {
+                return delete(i);
+            }
+        }
+        return null;
+    }
+
+
+    public Account change(int index, Account account) {
+        Account oldAccount = accounts[index];
+        accounts[index] = account;
+        return oldAccount;
+    }
+
 
 }
