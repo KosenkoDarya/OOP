@@ -80,28 +80,34 @@ public class AccountManager {
     }
 
     public Account get(String number) {
-        for (Account account : accounts) {
-            if (account.getNumber().equals(number)){
+        Account account;
+        for (int i = 0; i < individualCount; i++) {
+            if ((account = individuals[i].get(number)) != null)
                 return account;
-            }
         }
         return null;
     }
 
-    public Account delete(double balance) {
-        for (int i = 0; i < accountsCount; i++) {
-            if (balance == accounts[i].getBalance()) {
-                return delete(i);
-            }
+    public Account delete(String number) {
+        Account account;
+        for (int i = 0; i < individualCount; i++) {
+            if ((account = individuals[i].delete(number)) != null)
+                return account;
         }
         return null;
     }
 
 
-    public Account change(int index, Account account) {
-        Account oldAccount = accounts[index];
-        accounts[index] = account;
-        return oldAccount;
+    public Account change(String number, Account account) {
+        Individual individual;
+        for (int i = 0; i < individualCount; i++) {
+            individual = individuals[i];
+            for (int j = 0; j < individual.getAccountsCount(); j++) {
+                if (individual.get(j).getNumber().equals(number))
+                    return individual.change(j, account);
+            }
+        }
+        return null;
     }
 
 

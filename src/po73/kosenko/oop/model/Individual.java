@@ -59,8 +59,8 @@ public class Individual {
     }
 
     public boolean hasAccount(String number) {
-        for (Account account : accounts) {
-            if (account.getNumber().equals(number)) {
+        for (int i = 0; i < accountsCount; i++) {
+            if (accounts[i].getNumber().equals(number)) {
                 return true;
             }
         }
@@ -79,9 +79,9 @@ public class Individual {
         return oldAccount;
     }
 
-    public Account delete(double balance) {
+    public Account delete(String number) {
         for (int i = 0; i < accountsCount; i++) {
-            if (balance == accounts[i].getBalance()) {
+            if (number.equals(accounts[i].getNumber())) {
                 return delete(i);
             }
         }
@@ -104,7 +104,7 @@ public class Individual {
         for (int i = 0; i < accountsCount; i++) {
             Account min = sortedAccounts [i];
             int minIndex = i;
-            for (int j = i + 1; j < accounts.length; j++) {
+            for (int j = i + 1; j < accountsCount; j++) {
                 if (sortedAccounts[j].getBalance() < min.getBalance()) {
                     min = sortedAccounts[j];
                     minIndex = j;
