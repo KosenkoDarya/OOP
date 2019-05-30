@@ -100,6 +100,7 @@ public class Individual {
     }
 
     public Account[] sortedAccounts(){
+        //todo getAccounts?
         Account[] sortedAccounts = new Account[accountsCount];
         System.arraycopy(accounts,0,sortedAccounts,0,accountsCount);
         for (int i = 0; i < accountsCount; i++) {

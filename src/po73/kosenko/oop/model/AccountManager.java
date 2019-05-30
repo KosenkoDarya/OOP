@@ -59,9 +59,13 @@ public class AccountManager {
         return individualCount;
     }
 
-    public Individual arrayIndividual() { return individuals[individualCount]; }
+    public Individual[] arrayIndividual() {
+        //todo так же как и в Individual - возвращаешь копию массива
+        return individuals[individualCount];
+    }
 
     public Individual[] sortedIndividual(){
+        //todo используй предыдущий метод
         Individual[] sortedIndividual = new Individual[individualCount];
         System.arraycopy(individuals,0,sortedIndividual,0,individualCount);
         for (int i = 0; i < individualCount; i++) {
@@ -81,7 +85,7 @@ public class AccountManager {
         }
         return sortedIndividual;
     }
-
+    //todo сначала вызываешь hasAccount и если есть - соответсвующий метод
     public Account get(String number) {
         Account account;
         for (int i = 0; i < individualCount; i++) {
@@ -100,11 +104,11 @@ public class AccountManager {
         return null;
     }
 
-
     public Account change(String number, Account account) {
         Individual individual;
         for (int i = 0; i < individualCount; i++) {
             individual = individuals[i];
+            //todo добавь метод в Individual-е
             for (int j = 0; j < individual.getAccountsCount(); j++) {
                 if (individual.get(j).getNumber().equals(number))
                     return individual.change(j, account);
