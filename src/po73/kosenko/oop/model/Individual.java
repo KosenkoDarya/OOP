@@ -76,6 +76,7 @@ public class Individual {
     public Account delete(int index) {
         Account oldAccount = accounts[index];
         System.arraycopy(accounts,index + 1,accounts,index,accounts.length - index - 1);
+        accountsCount--;
         return oldAccount;
     }
 

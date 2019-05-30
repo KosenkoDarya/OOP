@@ -6,16 +6,16 @@ public class AccountManager {
 
     public AccountManager(int individualCount) {
         this.individuals = new Individual[individualCount];
-        this.individualCount = individualCount;
+        this.individualCount = 0;
     }
 
     public AccountManager(Individual[] individuals) {
         this.individuals = new Individual[individuals.length];
         System.arraycopy(individuals, 0, this.individuals, 0, individuals.length);
-        individualCount = individuals.length;
+        this.individualCount = individuals.length;
     }
 
-    private void doubleArray(){
+    private void doubleArray() {
         Individual[] doubleSizeIndividual = new Individual[individuals.length * 2];
         System.arraycopy(individuals,0,doubleSizeIndividual,0,individualCount);
         individuals = doubleSizeIndividual;
@@ -27,15 +27,16 @@ public class AccountManager {
         }
         individuals[individualCount] = individual;
         individualCount++;
-        return  true;
+        return true;
     }
 
     public boolean add(int index, Individual individual) {
         if (individualCount == individuals.length){
             doubleArray();
         }
-        System.arraycopy(individuals,index,individuals,individuals.length - index,individualCount);
+        System.arraycopy(individuals,index + 1,individuals, index, individualCount - index - 1);
         individuals[index] = individual;
+        individualCount++;
         return true;
     }
 
@@ -50,12 +51,14 @@ public class AccountManager {
     public Individual delete(int index) {
         Individual oldIndividual = individuals[index];
         System.arraycopy(individuals,index + 1,individuals,index,individuals.length - index - 1);
+        individualCount--;
         return oldIndividual;
     }
 
     public int individualCount() {
         return individualCount;
     }
+
     public Individual arrayIndividual() { return individuals[individualCount]; }
 
     public Individual[] sortedIndividual(){
@@ -64,7 +67,7 @@ public class AccountManager {
         for (int i = 0; i < individualCount; i++) {
             Individual min = sortedIndividual [i];
             int minIndex = i;
-            for (int j = i + 1; j < individuals.length; j++) {
+            for (int j = i + 1; j < individualCount; j++) {
                 if (sortedIndividual[j].totalBalance() < min.totalBalance()) {
                     min = sortedIndividual[j];
                     minIndex = j;
@@ -76,7 +79,7 @@ public class AccountManager {
                 sortedIndividual[minIndex] = tmp;
             }
         }
-        return sortedIndividual();
+        return sortedIndividual;
     }
 
     public Account get(String number) {
