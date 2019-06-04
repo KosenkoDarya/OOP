@@ -61,29 +61,32 @@ public class AccountManager {
 
     public Individual[] arrayIndividual() {
         //todo так же как и в Individual - возвращаешь копию массива
+        Individual[] newIndidvidual = new Individual[individuals.length];
+        System.arraycopy(individuals, 0, newIndidvidual,0, individuals.length);
+        this.individuals = newIndidvidual;
+        this.individualsCount = individuals.length;
         return individuals[individualCount];
     }
 
     public Individual[] sortedIndividual(){
         //todo используй предыдущий метод
-        Individual[] sortedIndividual = new Individual[individualCount];
-        System.arraycopy(individuals,0,sortedIndividual,0,individualCount);
+        arrayIndividual ()
         for (int i = 0; i < individualCount; i++) {
-            Individual min = sortedIndividual [i];
+            Individual min = newIndividual [i];
             int minIndex = i;
             for (int j = i + 1; j < individualCount; j++) {
-                if (sortedIndividual[j].totalBalance() < min.totalBalance()) {
-                    min = sortedIndividual[j];
+                if (newIndividual[j].totalBalance() < min.totalBalance()) {
+                    min = newIndividual[j];
                     minIndex = j;
                 }
             }
             if (i != minIndex) {
-                Individual tmp = sortedIndividual[i];
-                sortedIndividual[i] = sortedIndividual[minIndex];
-                sortedIndividual[minIndex] = tmp;
+                Individual tmp = newIndividual[i];
+                newIndividual[i] = newIndividual[minIndex];
+                newIndividual[minIndex] = tmp;
             }
         }
-        return sortedIndividual;
+        return newIndividual;
     }
     //todo сначала вызываешь hasAccount и если есть - соответсвующий метод
     public Account get(String number) {
