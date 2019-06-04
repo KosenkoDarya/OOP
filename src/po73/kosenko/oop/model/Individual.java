@@ -100,9 +100,7 @@ public class Individual {
     }
 
     public Account[] sortedAccounts(){
-        //todo getAccounts?
-        Account[] sortedAccounts = new Account[accountsCount];
-        System.arraycopy(accounts,0,sortedAccounts,0,accountsCount);
+        Account[] sortedAccounts = getAccounts();
         for (int i = 0; i < accountsCount; i++) {
             Account min = sortedAccounts [i];
             int minIndex = i;
@@ -129,7 +127,8 @@ public class Individual {
         return totalBalance;
     }
 
-    public individuals[] changeIndividual (){
+    public Individual changeIndividual (String number, Account account){
+        //todo делай рабочим
         for (int i = 0; i < individualCount; i++) {
             individual = individuals[i];
             for (int j = 0; j < individual.getAccountsCount(); j++) {

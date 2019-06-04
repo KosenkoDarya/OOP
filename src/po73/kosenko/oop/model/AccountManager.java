@@ -60,19 +60,15 @@ public class AccountManager {
     }
 
     public Individual[] arrayIndividual() {
-        //todo так же как и в Individual - возвращаешь копию массива
-        Individual[] newIndidvidual = new Individual[individuals.length];
-        System.arraycopy(individuals, 0, newIndidvidual,0, individuals.length);
-        this.individuals = newIndidvidual;
-        this.individualsCount = individuals.length;
-        return individuals[individualCount];
+        Individual[] newIndidvidual = new Individual[individualCount];
+        System.arraycopy(individuals, 0, newIndidvidual,0, individualCount);
+        return newIndidvidual;
     }
 
     public Individual[] sortedIndividual(){
-        //todo используй предыдущий метод
-        arrayIndividual ()
+        Individual[] newIndividual = arrayIndividual();
         for (int i = 0; i < individualCount; i++) {
-            Individual min = newIndividual [i];
+            Individual min = newIndividual[i];
             int minIndex = i;
             for (int j = i + 1; j < individualCount; j++) {
                 if (newIndividual[j].totalBalance() < min.totalBalance()) {
@@ -88,7 +84,7 @@ public class AccountManager {
         }
         return newIndividual;
     }
-    //todo сначала вызываешь hasAccount и если есть - соответсвующий метод
+    //todo сначала вызываешь hasAccount и если есть - соответсвующий метод. Это в следующих трех методах
     public Account get(String number) {
         Account account;
         for (int i = 0; i < individualCount; i++) {
@@ -108,7 +104,12 @@ public class AccountManager {
     }
 
     public Account change(String number, Account account) {
-        Individual.changeIndividual()
+        Account changedAccount;
+        for (int i = 0; i < individualCount; i++) {
+            if ((account = individuals[i].get(number)) != null)
+                return account;
+        }
+        return null;
     }
 
 
