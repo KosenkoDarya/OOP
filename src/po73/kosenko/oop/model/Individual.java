@@ -129,4 +129,15 @@ public class Individual {
         return totalBalance;
     }
 
+    public individuals[] changeIndividual (){
+        for (int i = 0; i < individualCount; i++) {
+            individual = individuals[i];
+            for (int j = 0; j < individual.getAccountsCount(); j++) {
+                if (individual.get(j).getNumber().equals(number))
+                    return individual.change(j, account);
+            }
+        }
+        return null;
+    }
+
 }

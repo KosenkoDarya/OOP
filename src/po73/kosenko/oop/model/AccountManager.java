@@ -108,16 +108,7 @@ public class AccountManager {
     }
 
     public Account change(String number, Account account) {
-        Individual individual;
-        for (int i = 0; i < individualCount; i++) {
-            individual = individuals[i];
-            //todo добавь метод в Individual-е
-            for (int j = 0; j < individual.getAccountsCount(); j++) {
-                if (individual.get(j).getNumber().equals(number))
-                    return individual.change(j, account);
-            }
-        }
-        return null;
+        Individual.changeIndividual()
     }
 
 
