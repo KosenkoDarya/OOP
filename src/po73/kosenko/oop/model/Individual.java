@@ -67,7 +67,7 @@ public class Individual {
         return false;
     }
 
-    public Account change(int index, Account account) {
+    public Account change(int index, Account account) { // ИЗМЕНЯЮЩИЙ ССЫЛКУ НА ЭКЗЕМПЛЯР КЛАССА!!!  И ВОЗВРАЩАЮЩИЙ СТАРЫЙ!!!
         Account oldAccount = accounts[index];
         accounts[index] = account;
         return oldAccount;
@@ -127,7 +127,7 @@ public class Individual {
         return totalBalance;
     }
 
-    public Individual changeIndividual (String number, Account account){
+    public Individual change (String number, Account account){
         //todo делай рабочим
         for (int i = 0; i < individualCount; i++) {
             individual = individuals[i];

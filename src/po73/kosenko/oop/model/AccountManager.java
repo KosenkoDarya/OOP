@@ -85,11 +85,13 @@ public class AccountManager {
         return newIndividual;
     }
     //todo сначала вызываешь hasAccount и если есть - соответсвующий метод. Это в следующих трех методах
+
+
     public Account get(String number) {
         Account account;
         for (int i = 0; i < individualCount; i++) {
-            if ((account = individuals[i].get(number)) != null)
-                return account;
+            if ((Individual.hasAccount(number)) != null)
+                return Individual.get(number);
         }
         return null;
     }
@@ -97,8 +99,8 @@ public class AccountManager {
     public Account delete(String number) {
         Account account;
         for (int i = 0; i < individualCount; i++) {
-            if ((account = individuals[i].delete(number)) != null)
-                return account;
+            if ((Individual.hasAccount(number))) != null)
+                return Individual.delete(number);
         }
         return null;
     }
@@ -106,8 +108,8 @@ public class AccountManager {
     public Account change(String number, Account account) {
         Account changedAccount;
         for (int i = 0; i < individualCount; i++) {
-            if ((account = individuals[i].get(number)) != null)
-                return account;
+            if (((Individual.hasAccount(number))) != null)
+                return Individual.change(number,account);
         }
         return null;
     }
