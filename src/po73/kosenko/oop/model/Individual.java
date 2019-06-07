@@ -127,13 +127,14 @@ public class Individual {
         return totalBalance;
     }
 
-    public Individual change (String number, Account account){
+    public Account change (String number, Account account){
         //todo делай рабочим
-        for (int i = 0; i < individualCount; i++) {
-            individual = individuals[i];
-            for (int j = 0; j < individual.getAccountsCount(); j++) {
-                if (individual.get(j).getNumber().equals(number))
-                    return individual.change(j, account);
+        for (int i = 0; ,i < individualCount; i++) {
+            if(ccounts[i].getNumber.equals(number)) {
+               Account retAccount = accounts[i];
+                accounts[i] = account;
+                return  retAccount;
+
             }
         }
         return null;
